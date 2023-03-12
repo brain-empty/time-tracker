@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Axios from 'axios';
 
 function ClockPage () {
 
@@ -42,10 +43,31 @@ function ClockPage () {
         }
     })
 
+    function createObject(){
+        const time = hours * 60 * 60 + minutes * 60 + seconds;
+
+        const activityEntry = {
+            name: activityName,
+            time: time
+        }
+
+        return activityEntry
+    }
+
     function handleStop () {
         setIsActive(false)
-
-        // save data
+        const activityEntry = createObject()
+        activityEntry.id = 0
+        
+         Axios
+            .post('http://localhost:3001/postActivity', activityEntry)
+            .then(function (res) {
+                    console.log(res);
+                    if (res.data.name) { //data.name is only returned when there is an error on the server side and it holds the name of the error
+                        console.log("ERROR")
+                    }
+                })
+            .catch(function (error) {console.log(error);});
     }
 
     return (
