@@ -1,24 +1,12 @@
-import "./App.css"
-
-function Home () {
-  return (
-    <div>
-
-      <nav>
-        <h1>hello</h1>
-        <ul className="nav-bar">
-          <li>Home</li>
-          <li>Nowhere</li>
-        </ul>
-      </nav>
-
-    </div>
-  )
-}
+import React from 'react';
+import ClockPage from "./components/ClockPage";
+import "./app.css";
 
 function App() {
   return (
-    <Home />
+    <>
+    <ClockPage />
+    </>
   );
 }
 
